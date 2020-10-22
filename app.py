@@ -47,6 +47,11 @@ def decrypt():
                 result = EnyoDecryption(text, key, partition=int(partitions)).decrypted
         except:
             result = "Invalid Partitions"
+        final = ""
+        for i in result:
+            if(ord(i)>0):
+                final = final + i
+        result = final
         return render_template('index.html', result = result)
 
 if __name__ == '__main__':

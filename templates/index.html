@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Enyo Cipher</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat&amp;display=swap'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://i.imgur.com/BPCvNqO.png" rel="icon">
+        
+    <meta name="description" content="A fast and lightweight encryption algorithm">
+    <meta name="keywords" content="owasp, owaspvit, enyo, apratim shukla, apratimshukla6, apratim, earthing, chennai, vit chennai encryption, vit chennai cipher, encryption algorithm, fast cipher, enyo python, python cipher">
+    <meta name="author" content="Apratim Shukla">
+</head>
+<body>
+<div class="container">
+	<h2 class="title">Enyo Cipher</h2>
+    <div class="settings">
+		<div class="setting">
+			<input type="text" id="result" onclick="result();" value="{{ result }}" style="text-align: center; user-select: none;" readonly>
+		</div>
+    </div>
+    <form method="POST">
+	<div class="length range__slider" data-min="2" data-max="32">
+		<div class="length__title field-title" data-length='0'>Partitions:</div>
+		<input id="slider" type="range" min="2" max="32" value="2" name="partitions" />
+	</div>
+
+	<div class="settings">
+		<span class="settings__title field-title">settings</span>
+		<div class="setting">
+			<input type="text" placeholder="Enter Text" name="text" required>
+		</div>
+		<div class="setting">
+			<input type="text" placeholder="Enter Secret Key" name="key" required>
+		</div>
+		<div class="setting">
+			<input type="checkbox" id="symbol" name="trans"/>
+			<label for="symbol">Transposition</label>
+		</div>
+	</div>
+
+	<button type="submit" class="btn generate" formaction="{{ url_for('encrypt') }}">Encrypt</button>
+    <button type="submit" class="btn generate" formaction="/decrypt">Decrypt</button>
+    </form>
+</div>
+
+
+<div class="support">
+	<a href="https://pypi.org/project/enyo/" target="_blank"><i class="fab fa-python"></i></a>
+</div>
+
+<a class="github-corner" href="https://github.com/apratimshukla6/enyo" title="Star Enyo on GitHub" target="_blank">
+	<svg width="80" height="80" viewbox="0 0 250 250">
+		<title>Star Enyo on GitHub</title>
+		<path d="M0 0h250v250" />
+		<path class="octo-arm" d="M127.4 110c-14.6-9.2-9.4-19.5-9.4-19.5 3-7 1.5-11 1.5-11-1-6.2 3-2 3-2 4 4.7 2 11 2 11-2.2 10.4 5 14.8 9 16.2" fill="currentColor" style="transform-origin:130px 110px;" />
+		<path class="octo-body" d="M113.2 114.3s3.6 1.6 4.7.6l15-13.7c3-2.4 6-3 8.2-2.7-8-11.2-14-25 3-41 4.7-4.4 10.6-6.4 16.2-6.4.6-1.6 3.6-7.3 11.8-10.7 0 0 4.5 2.7 6.8 16.5 4.3 2.7 8.3 6 12 9.8 3.3 3.5 6.7 8 8.6 12.3 14 3 16.8 8 16.8 8-3.4 8-9.4 11-11.4 11 0 5.8-2.3 11-7.5 15.5-16.4 16-30 9-40 .2 0 3-1 7-5.2 11l-13.3 11c-1 1 .5 5.3.8 5z" fill="currentColor" />
+	</svg>
+</a>
+
+    <script  src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+        function result() {
+          /* Get the text field */
+          var copyText = document.getElementById("result");
+
+          /* Select the text field */
+          copyText.select();
+          copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+          /* Copy the text inside the text field */
+          document.execCommand("copy");
+
+          /* Alert the copied text */
+          alert("Copied Output:" + copyText.value);
+        }
+        
+        var inp = document.getElementById('result');
+
+        inp.addEventListener('select', function() {
+          this.selectionStart = this.selectionEnd;
+        }, false);
+    </script>
+</body>
+</html>
